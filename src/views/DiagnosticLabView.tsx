@@ -6,8 +6,14 @@ import { Card } from '@/components/ui/Card';
 import { FileUp, Loader2, ShieldCheck, AlertTriangle, CheckCircle2, Activity } from 'lucide-react';
 import { motion } from 'motion/react';
 
-// Initialize Gemini API
-const ai = new GoogleGenAI({ apiKey: (import.meta as any).env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY });
+// Initialize Gemini API lazily to prevent crashes on load if the key is missing
+const getAI = () => {
+  const apiKey = (import.meta as any).env.VITE_GEMINI_API_KEY || (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : undefined);
+  if (!apiKey) {
+    throw new Error("Gemini API key is missing. Please add VITE_GEMINI_API_KEY to your environment variables.");
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 export function DiagnosticLabView() {
   const [file, setFile] = useState<File | null>(null);
@@ -51,7 +57,8 @@ export function DiagnosticLabView() {
 
           const prompt = `Here is the raw machine telemetry data (Top 20 rows):\n\n${csvString}`;
 
-          const response = await ai.models.generateContent({
+          const aiInstance = getAI();
+          const response = await aiInstance.models.generateContent({
             model: 'gemini-3-flash-preview',
             contents: prompt,
             config: {
@@ -68,9 +75,9 @@ export function DiagnosticLabView() {
           } else {
             setIsCritical(false);
           }
-        } catch (error) {
+        } catch (error: any) {
           console.error('Error analyzing data:', error);
-          setAnalysisResult('Error analyzing data. Please check your API key and try again.');
+          setAnalysisResult(error.message || 'Error analyzing data. Please check your API key and try again.');
         } finally {
           setIsAnalyzing(false);
         }
