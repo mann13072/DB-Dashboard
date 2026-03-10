@@ -60,20 +60,20 @@ export function AIWorkflowVisualizer() {
 
   return (
     <Card title="AI Workflow Automation (n8n Style Visualizer)" className="h-[500px] flex flex-col">
-      <div className="flex items-center gap-4 mb-4 text-sm text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-200">
+      <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-4 text-xs md:text-sm text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-200">
         <div className="flex items-center gap-2">
-          <Brain className="w-4 h-4 text-purple-500" />
-          <span>AI Models Active: <strong>2</strong></span>
+          <Brain className="w-3.5 h-3.5 md:w-4 md:h-4 text-purple-500" />
+          <span>AI Models: <strong>2</strong></span>
         </div>
-        <div className="h-4 w-px bg-slate-300" />
+        <div className="hidden xs:block h-4 w-px bg-slate-300" />
         <div className="flex items-center gap-2">
-          <Zap className="w-4 h-4 text-amber-500" />
-          <span>Avg. Latency: <strong>45ms</strong></span>
+          <Zap className="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-500" />
+          <span>Latency: <strong>45ms</strong></span>
         </div>
-        <div className="h-4 w-px bg-slate-300" />
+        <div className="hidden xs:block h-4 w-px bg-slate-300" />
         <div className="flex items-center gap-2">
-          <CheckCircle className="w-4 h-4 text-teal-500" />
-          <span>Last Run: <strong>Success (12s ago)</strong></span>
+          <CheckCircle className="w-3.5 h-3.5 md:w-4 md:h-4 text-teal-500" />
+          <span>Last Run: <strong>Success</strong></span>
         </div>
       </div>
       

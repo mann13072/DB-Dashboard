@@ -21,6 +21,7 @@ export function DiagnosticLabView() {
   const [analysisResult, setAnalysisResult] = useState<string | null>(null);
   const [isCritical, setIsCritical] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const uploadedFile = acceptedFiles[0];
@@ -91,6 +92,7 @@ export function DiagnosticLabView() {
   };
 
   const handleSaveToVault = () => {
+    setShowConfirm(false);
     // Simulate saving to WORM storage
     setTimeout(() => {
       setIsSaved(true);
@@ -98,7 +100,38 @@ export function DiagnosticLabView() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 relative">
+      {showConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+          <motion.div 
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl border border-slate-200"
+          >
+            <div className="flex items-center gap-3 mb-4 text-amber-600">
+              <AlertTriangle className="w-6 h-6" />
+              <h3 className="text-lg font-bold">Confirm Vault Storage</h3>
+            </div>
+            <p className="text-slate-600 mb-6">
+              You are about to sign and save this analysis to the WORM (Write Once Read Many) vault. This action is immutable and will be logged for compliance.
+            </p>
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setShowConfirm(false)}
+                className="flex-1 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleSaveToVault}
+                className="flex-1 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-medium transition-colors"
+              >
+                Confirm & Sign
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-slate-900">Diagnostic Lab</h2>
@@ -106,8 +139,8 @@ export function DiagnosticLabView() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-1 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="md:col-span-2 lg:col-span-1 space-y-6">
           <Card title="Data Ingestion">
             <div 
               {...getRootProps()} 
@@ -190,7 +223,7 @@ export function DiagnosticLabView() {
                       Layer 4 Compliance: Pending Vault Storage
                     </div>
                     <button
-                      onClick={handleSaveToVault}
+                      onClick={() => setShowConfirm(true)}
                       disabled={isSaved}
                       className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isSaved ? 'bg-green-100 text-green-700' : 'bg-slate-900 hover:bg-slate-800 text-white'}`}
                     >

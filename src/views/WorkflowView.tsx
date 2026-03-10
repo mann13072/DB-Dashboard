@@ -215,39 +215,39 @@ export function WorkflowView() {
   }, [setNodes, setEdges]);
 
   return (
-    <div className="h-[calc(100vh-140px)] w-full flex flex-col gap-4">
-      <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-        <div className="flex items-center gap-4 text-sm text-slate-500">
+    <div className="h-[calc(100vh-180px)] md:h-[calc(100vh-140px)] w-full flex flex-col gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm gap-4">
+        <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500">
           <div className="flex items-center gap-2">
-            <Brain className="w-4 h-4 text-purple-500" />
-            <span>AI Models Active: <strong>2</strong></span>
+            <Brain className="w-3.5 h-3.5 md:w-4 md:h-4 text-purple-500" />
+            <span>AI Models: <strong>2</strong></span>
           </div>
-          <div className="h-4 w-px bg-slate-300" />
+          <div className="hidden xs:block h-4 w-px bg-slate-300" />
           <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-amber-500" />
-            <span>Avg. Latency: <strong>45ms</strong></span>
+            <Zap className="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-500" />
+            <span>Latency: <strong>45ms</strong></span>
           </div>
-          <div className="h-4 w-px bg-slate-300" />
+          <div className="hidden xs:block h-4 w-px bg-slate-300" />
           <div className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-teal-500" />
-            <span>Last Run: <strong>Success (12s ago)</strong></span>
+            <CheckCircle className="w-3.5 h-3.5 md:w-4 md:h-4 text-teal-500" />
+            <span>Last Run: <strong>Success</strong></span>
           </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full sm:w-auto">
             <button 
                 id="save-btn"
                 onClick={onSave}
-                className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm font-medium transition-colors"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-xs md:text-sm font-medium transition-colors"
             >
                 <Save className="w-4 h-4" /> Save
             </button>
             <button 
                 onClick={onDeleteSelected}
-                className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-md text-sm font-medium transition-colors"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-md text-xs md:text-sm font-medium transition-colors"
             >
-                <Trash2 className="w-4 h-4" /> Delete Selected
+                <Trash2 className="w-4 h-4" /> Delete
             </button>
-            <button className="flex items-center gap-2 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm font-medium transition-colors shadow-sm shadow-red-200">
+            <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-md text-xs md:text-sm font-medium transition-colors shadow-sm shadow-red-200">
                 <Play className="w-4 h-4" /> Execute
             </button>
         </div>

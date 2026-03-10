@@ -25,7 +25,7 @@ export function ExecutiveView() {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {kpis.filter(k => k.id !== 'fleet-avail').map((kpi) => (
           <Card key={kpi.id} className="relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-5">
@@ -52,8 +52,8 @@ export function ExecutiveView() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card title="Fleet Availability" className="lg:col-span-1 flex flex-col items-center justify-center min-h-[300px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card title="Fleet Availability" className="md:col-span-2 lg:col-span-1 flex flex-col items-center justify-center min-h-[300px]">
           <div className="relative w-full h-64">
             <ResponsiveContainer width="100%" height="100%">
               <RadialBarChart 

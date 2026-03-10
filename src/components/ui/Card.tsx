@@ -15,7 +15,7 @@ export function Card({ title, children, className, action, ...props }: CardProps
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={cn("bg-white border border-slate-200 rounded-xl p-6 shadow-sm", className)}
+      className={cn("bg-white border border-slate-200 rounded-xl p-4 md:p-6 shadow-sm", className)}
       {...props}
     >
       {(title || action) && (

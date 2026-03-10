@@ -43,10 +43,10 @@ function AssetModal({ asset, onClose }: AssetModalProps) {
             </button>
           </div>
           
-          <div className="p-6 grid grid-cols-2 gap-6">
+          <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <h3 className="text-sm font-medium text-slate-500 uppercase mb-3">Technical Schema</h3>
+                <h3 className="text-sm font-medium text-slate-500 uppercase mb-3 text-xs md:text-sm">Technical Schema</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-slate-600">Asset Type</span>
@@ -64,7 +64,7 @@ function AssetModal({ asset, onClose }: AssetModalProps) {
               </div>
 
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <h3 className="text-sm font-medium text-slate-500 uppercase mb-3">Integration Status</h3>
+                <h3 className="text-sm font-medium text-slate-500 uppercase mb-3 text-xs md:text-sm">Integration Status</h3>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-600">Readiness Score</span>
@@ -82,32 +82,32 @@ function AssetModal({ asset, onClose }: AssetModalProps) {
 
             <div className="space-y-4">
                <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <h3 className="text-sm font-medium text-slate-500 uppercase mb-3">Live Diagnostics</h3>
+                <h3 className="text-sm font-medium text-slate-500 uppercase mb-3 text-xs md:text-sm">Live Diagnostics</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Disc className="w-4 h-4 text-slate-400" />
-                      <span>Wheelset Wear</span>
+                      <span className="text-xs md:text-sm">Wheelset Wear</span>
                     </div>
-                    <span className={`font-mono font-bold ${asset.wheelsetWear > 2.5 ? 'text-red-600' : 'text-teal-600'}`}>
+                    <span className={`font-mono font-bold text-xs md:text-sm ${asset.wheelsetWear > 2.5 ? 'text-red-600' : 'text-teal-600'}`}>
                       {asset.wheelsetWear}mm
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-slate-600">
                       <AlertTriangle className="w-4 h-4 text-slate-400" />
-                      <span>Door Failures</span>
+                      <span className="text-xs md:text-sm">Door Failures</span>
                     </div>
-                    <span className={`font-mono font-bold ${asset.doorFailures > 3 ? 'text-red-600' : 'text-slate-900'}`}>
+                    <span className={`font-mono font-bold text-xs md:text-sm ${asset.doorFailures > 3 ? 'text-red-600' : 'text-slate-900'}`}>
                       {asset.doorFailures}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-slate-600">
                       <Thermometer className="w-4 h-4 text-slate-400" />
-                      <span>HVAC Status</span>
+                      <span className="text-xs md:text-sm">HVAC Status</span>
                     </div>
-                    <span className={`font-mono font-bold ${asset.hvacStatus ? 'text-teal-600' : 'text-red-600'}`}>
+                    <span className={`font-mono font-bold text-xs md:text-sm ${asset.hvacStatus ? 'text-teal-600' : 'text-red-600'}`}>
                       {asset.hvacStatus ? 'ONLINE' : 'OFFLINE'}
                     </span>
                   </div>
@@ -152,41 +152,41 @@ export function TechnicianView() {
   return (
     <>
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="flex items-center gap-4">
-            <div className="p-3 bg-teal-50 rounded-lg border border-teal-100">
-              <Disc className="w-6 h-6 text-teal-600" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
+          <Card className="flex items-center gap-4 p-4 md:p-6">
+            <div className="p-3 bg-teal-50 rounded-lg border border-teal-100 shrink-0">
+              <Disc className="w-5 h-5 md:w-6 md:h-6 text-teal-600" />
             </div>
             <div>
-              <div className="text-slate-500 text-xs uppercase font-bold">Wheelset Wear Rate</div>
-              <div className="text-xl font-bold text-slate-900">1.2mm <span className="text-xs font-normal text-slate-500">/ 10k km</span></div>
+              <div className="text-slate-500 text-[10px] md:text-xs uppercase font-bold">Wheelset Wear Rate</div>
+              <div className="text-lg md:text-xl font-bold text-slate-900">1.2mm <span className="text-[10px] md:text-xs font-normal text-slate-500">/ 10k km</span></div>
             </div>
           </Card>
-          <Card className="flex items-center gap-4">
-            <div className="p-3 bg-red-50 rounded-lg border border-red-100">
-              <AlertTriangle className="w-6 h-6 text-red-600" />
+          <Card className="flex items-center gap-4 p-4 md:p-6">
+            <div className="p-3 bg-red-50 rounded-lg border border-red-100 shrink-0">
+              <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 text-red-600" />
             </div>
             <div>
-              <div className="text-slate-500 text-xs uppercase font-bold">Door Failure Rate</div>
-              <div className="text-xl font-bold text-slate-900">0.8% <span className="text-xs font-normal text-slate-500">Top Cause</span></div>
+              <div className="text-slate-500 text-[10px] md:text-xs uppercase font-bold">Door Failure Rate</div>
+              <div className="text-lg md:text-xl font-bold text-slate-900">0.8% <span className="text-[10px] md:text-xs font-normal text-slate-500">Top Cause</span></div>
             </div>
           </Card>
-          <Card className="flex items-center gap-4">
-            <div className="p-3 bg-teal-50 rounded-lg border border-teal-100">
-              <Thermometer className="w-6 h-6 text-teal-600" />
+          <Card className="flex items-center gap-4 p-4 md:p-6">
+            <div className="p-3 bg-teal-50 rounded-lg border border-teal-100 shrink-0">
+              <Thermometer className="w-5 h-5 md:w-6 md:h-6 text-teal-600" />
             </div>
             <div>
-              <div className="text-slate-500 text-xs uppercase font-bold">HVAC Availability</div>
-              <div className="text-xl font-bold text-slate-900">98.5%</div>
+              <div className="text-slate-500 text-[10px] md:text-xs uppercase font-bold">HVAC Availability</div>
+              <div className="text-lg md:text-xl font-bold text-slate-900">98.5%</div>
             </div>
           </Card>
-          <Card className="flex items-center gap-4">
-            <div className="p-3 bg-teal-50 rounded-lg border border-teal-100">
-              <CheckCircle className="w-6 h-6 text-teal-600" />
+          <Card className="flex items-center gap-4 p-4 md:p-6">
+            <div className="p-3 bg-teal-50 rounded-lg border border-teal-100 shrink-0">
+              <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-teal-600" />
             </div>
             <div>
-              <div className="text-slate-500 text-xs uppercase font-bold">Defect Accuracy</div>
-              <div className="text-xl font-bold text-slate-900">99.2%</div>
+              <div className="text-slate-500 text-[10px] md:text-xs uppercase font-bold">Defect Accuracy</div>
+              <div className="text-lg md:text-xl font-bold text-slate-900">99.2%</div>
             </div>
           </Card>
         </div>
