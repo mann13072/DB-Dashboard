@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { Header } from '@/components/layout/Header';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { ExecutiveView } from '@/views/ExecutiveView';
 import { OperationalView } from '@/views/OperationalView';
 import { TechnicianView } from '@/views/TechnicianView';
 import { WorkflowView } from '@/views/WorkflowView';
+import { DiagnosticLabView } from '@/views/DiagnosticLabView';
 import { RiskMatrix } from '@/components/widgets/RiskMatrix';
 import { generateMockData } from '@/data/mockData';
 import { MilestoneHeader } from '@/components/layout/Header';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'executive' | 'operational' | 'technician' | 'workflow'>('executive');
+  const [currentView, setCurrentView] = useState<'executive' | 'operational' | 'technician' | 'workflow' | 'diagnostic'>('executive');
   const { pipeline } = generateMockData();
 
   return (
@@ -32,6 +32,7 @@ export default function App() {
                 {currentView === 'operational' && 'Operational Management Center'}
                 {currentView === 'technician' && 'Technician Terminal (CDM)'}
                 {currentView === 'workflow' && 'AI Workflow Automation'}
+                {currentView === 'diagnostic' && 'Diagnostic Lab'}
               </h1>
               <div className="text-sm text-slate-500 font-mono">
                 Last Sync: {new Date().toLocaleTimeString()}
@@ -53,6 +54,8 @@ export default function App() {
             {currentView === 'technician' && <TechnicianView />}
 
             {currentView === 'workflow' && <WorkflowView />}
+
+            {currentView === 'diagnostic' && <DiagnosticLabView />}
           </div>
         </main>
       </div>

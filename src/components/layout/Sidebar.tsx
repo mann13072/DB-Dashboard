@@ -1,10 +1,10 @@
-import { LayoutDashboard, Activity, Wrench, Workflow } from 'lucide-react';
+import { LayoutDashboard, Activity, Wrench, Workflow, Microscope } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PipelineLayer } from '@/types';
 
 interface SidebarProps {
-  currentView: 'executive' | 'operational' | 'technician' | 'workflow';
-  onChangeView: (view: 'executive' | 'operational' | 'technician' | 'workflow') => void;
+  currentView: 'executive' | 'operational' | 'technician' | 'workflow' | 'diagnostic';
+  onChangeView: (view: 'executive' | 'operational' | 'technician' | 'workflow' | 'diagnostic') => void;
   pipeline: PipelineLayer[];
 }
 
@@ -14,6 +14,7 @@ export function Sidebar({ currentView, onChangeView, pipeline }: SidebarProps) {
     { id: 'operational', label: 'Operational Mgmt', icon: Activity },
     { id: 'technician', label: 'Technician Terminal', icon: Wrench },
     { id: 'workflow', label: 'AI Workflow', icon: Workflow },
+    { id: 'diagnostic', label: 'Diagnostic Lab', icon: Microscope },
   ] as const;
 
   return (

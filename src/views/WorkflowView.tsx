@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { ReactFlow, Controls, Background, useNodesState, useEdgesState, MarkerType, Position, ReactFlowProvider, Panel, Node, ReactFlowInstance, Connection, addEdge } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { Brain, Zap, CheckCircle, Plus, Trash2, Save, Play } from 'lucide-react';

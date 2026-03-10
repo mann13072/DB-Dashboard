@@ -1,19 +1,22 @@
+import React from 'react';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   children: React.ReactNode;
   className?: string;
   action?: React.ReactNode;
+  key?: React.Key;
 }
 
-export function Card({ title, children, className, action }: CardProps) {
+export function Card({ title, children, className, action, ...props }: CardProps) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className={cn("bg-white border border-slate-200 rounded-xl p-6 shadow-sm", className)}
+      {...props}
     >
       {(title || action) && (
         <div className="flex justify-between items-center mb-4">
